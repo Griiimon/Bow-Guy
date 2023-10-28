@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c562sls17is7g"]
+
+[ext_resource type="Script" path="res://utils/Polygon Collision Shape Creator.gd" id="1_e6ehv"]
+[ext_resource type="Script" path="res://Rabbit.gd" id="1_qti0p"]
+
+[node name="Rabbit" type="CharacterBody2D"]
+script = ExtResource("1_qti0p")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.317647, 0.317647, 0.317647, 1)
+polygon = PackedVector2Array(0, 0, 32, 0, 48, -24, 32, -40, 48, -72, 32, -72, 24, -40, 16, -72, 0, -72, 16, -40, 8, -32, -32, -40, -40, -24, -24, 0)
+script = ExtResource("1_e6ehv")
+
+[node name="Direction Change" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Direction Change" to="." method="_on_direction_change_timeout"]

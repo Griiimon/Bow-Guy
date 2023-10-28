@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://3bcsr6l2btl4"]
+
+[ext_resource type="PackedScene" uid="uid://c6vofmrl8r6bd" path="res://guy.tscn" id="1_bqc81"]
+[ext_resource type="Script" path="res://utils/Polygon Collision Shape Creator.gd" id="2_6c1jc"]
+[ext_resource type="PackedScene" uid="uid://c562sls17is7g" path="res://rabbit.tscn" id="3_77abv"]
+
+[sub_resource type="Gradient" id="Gradient_oi5eb"]
+colors = PackedColorArray(0.535243, 0.686283, 1, 1, 0, 0.180392, 0.482353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_02ayp"]
+gradient = SubResource("Gradient_oi5eb")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="Level" type="Node2D"]
+
+[node name="Guy" parent="." instance=ExtResource("1_bqc81")]
+position = Vector2(391, 425)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_02ayp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2(-320, 576)
+color = Color(0.239216, 0.52549, 0.235294, 1)
+polygon = PackedVector2Array(-1000, 3000, 500, 0, 1200, 500, 5000, 200, 8000, -300, 8000, 500, 8000, 3000)
+script = ExtResource("2_6c1jc")
+
+[node name="Rabbit" parent="." instance=ExtResource("3_77abv")]
+position = Vector2(1829, 934)
